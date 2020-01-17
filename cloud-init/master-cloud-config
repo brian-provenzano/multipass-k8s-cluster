@@ -1,0 +1,34 @@
+#cloud-config
+#
+#
+# See below : This allows us to auto deploy manifests upon creation of cluster if dropped in '/var/lib/rancher/k3s/server/manifests/custom'
+# Function of k3s autodeploy https://rancher.com/docs/k3s/latest/en/advanced/#auto-deploying-manifests
+# Example: #multipass copy-files k8s/default/deployment.yaml kube-master:/var/lib/rancher/k3s/server/manifests/custom/deployment.yaml
+# - sudo usermod -G root ubuntu
+# - sudo mkdir /var/lib/rancher/k3s/server/manifests/custom
+# - sudo chmod 770 /var/lib/rancher/k3s/server/ -R
+
+package_update: true
+
+packages:
+ - wget
+ - curl
+ - git
+ - apt-transport-https
+
+
+runcmd:
+  - sudo hostnamectl set-hostname kube-master
+  - sudo swapoff -a
+  - sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab
+  - sudo echo "vm.swappiness=0" | sudo tee --append /etc/sysctl.conf
+  - sudo sysctl -p
+  - curl -sfL https://get.k3s.io | sh -s - --write-kubeconfig-mode 644
+  - curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+  - sudo touch /etc/apt/sources.list.d/kubernetes.list 
+  - echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+  - sudo apt-get update
+  - sudo apt-get install -y kubectl
+  #- sudo usermod -G root ubuntu
+  #- sudo mkdir /var/lib/rancher/k3s/server/manifests/custom
+  #- sudo chmod 770 /var/lib/rancher/k3s/server/ -R
