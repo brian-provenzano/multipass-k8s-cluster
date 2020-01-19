@@ -1,8 +1,8 @@
-# Multipass Ubuntu + K3s = goodness
+# Multipass Ubuntu + K3s = Lightweight K8s goodness
 
-Simple project (shell script) to launch a 3 node kubernetes cluster on multipass VMs using k3s.  
+Simple project (shell script) to launch a 3 node kubernetes cluster on multipass VMs using k3s.
 
-Useful as a local multinode lab replacement (e.g. replacement for MacOS K8s in Docker Desktop / KIND which is only single node).
+Useful as a lightweight local multinode lab k8s playground (e.g. replacement for MacOS K8s in Docker Desktop / KIND which is only single node).
 
 Will also pull down the k3s kubeconfig from the k8s master using multipass copy-files and install in `~/.kube` as `k3s-config` (can be changed in the script) so you can access the cluster from your host.
 
