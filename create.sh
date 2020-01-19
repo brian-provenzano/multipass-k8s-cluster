@@ -76,7 +76,7 @@ multipass exec $K8S_MASTER -- kubectl get nodes -o wide
 echo -e "----\nRun 'multipass shell $K8S_MASTER' to shell in and use kubectl."
 echo "----"
 # 4. Grab the kubeconfig for local host access
-echo "Copying the k3s kube config to {GREEN}$HOME.kube/k3s-config{NC}"
+echo "Copying the k3s kube config to ${GREEN}$HOME.kube/k3s-config${NC}"
 if [ -d ~/.kube ]; then
     echo "- ~/.kube directory exists...creating new cluster config"
     rm -rf ~/.kube/$KUBECONFIG_NAME
@@ -88,14 +88,14 @@ fi
 
 # a. Replace with the correct master external IP and give it a friendly name
 #    NOTE: sed inplace (-i) doesnt work the same in BSD as it does in Linux so hacking this with tee ... :(
-echo -e "- Your config details:\n----{GREEN}"
+echo -e "- Your config details:\n----${GREEN}"
 NEWCONFIG=$(sed -e "s|server: https://127.0.0.1:6443|server: https://$K8S_MASTERIP:6443|" \
 -e "s|cluster: default|cluster: $KUBECONFIG_CLUSTERNAME|" \
 -e "s|name: default|name: $KUBECONFIG_CLUSTERNAME|" \
 -e "s|- name: $KUBECONFIG_CLUSTERNAME|- name: default|" \
 -e "s|current-context: default|current-context: $KUBECONFIG_CLUSTERNAME|" ~/.kube/$KUBECONFIG_NAME)
 echo "$NEWCONFIG" | tee ~/.kube/$KUBECONFIG_NAME
-echo -e "{NC}----"
+echo -e "${NC}----"
 echo -e "Configuration file location is:  ${GREEN} ~/.kube/$KUBECONFIG_NAME ${NC} \nUse your local kubectl to access the cluster (IP: ${GREEN} $K8S_MASTERIP ${NC})"
 echo "----"
 echo -e "Add ${GREEN} export KUBECONFIG=$KUBECONFIG:~/.kube/config:~/.kube/$KUBECONFIG_NAME ${NC} to your ~/.bashrc or ~/.zshrc OR run kubectl with the ${GREEN} --kubeconfig ${NC} flag (e.g. kubectl --kubeconfig ~/.kube/$KUBECONFIG_NAME get nodes)"
