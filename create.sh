@@ -76,7 +76,7 @@ multipass exec $K8S_MASTER -- kubectl get nodes -o wide
 echo -e "----\nRun 'multipass shell $K8S_MASTER' to shell in and use kubectl."
 echo "----"
 # 4. Grab the kubeconfig for local host access
-echo "Copying the k3s kube config to ${GREEN}$HOME.kube/k3s-config${NC}"
+echo -e "Copying the k3s kube config to ${GREEN}~/.kube/k3s-config${NC}"
 if [ -d ~/.kube ]; then
     echo "- ~/.kube directory exists...creating new cluster config"
     rm -rf ~/.kube/$KUBECONFIG_NAME
