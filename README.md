@@ -8,6 +8,10 @@ Will also pull down the k3s kubeconfig from the k8s master using multipass copy-
 
 Tested on MacOS / Linux; currently uses Ubuntu 18.04 LTS for node images
 
+
+[![asciicast]](https://asciinema.org/a/l3t6QSfjZmfCRjQoZ8UuAoKTj?speed=20&theme=solarized-dark)
+
+
 K3s:
  - https://k3s.io/
  - https://rancher.com/docs/k3s/latest/en/
@@ -27,6 +31,8 @@ Multipass:
 ```
 
 2. To start, stop, destroy the cluster (via multipass) see `stop.sh`, `start.sh`, `destroy.sh` - extend or modify these scripts as needed
+
+NOTE: When stopping or destroying you may get these messages ` [error] [kube-worker2] process error occurred Crashed`.  These can be ignored.  Seems to be an issue with multipass, but the VMs are cleaned up and stopped.
 
 
 ## Directory description

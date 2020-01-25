@@ -98,7 +98,7 @@ echo "$NEWCONFIG" | tee ~/.kube/$KUBECONFIG_NAME
 echo -e "${NC}----"
 echo -e "Configuration file location is:  ${GREEN} ~/.kube/$KUBECONFIG_NAME ${NC} \nUse your local kubectl to access the cluster (IP: ${GREEN} $K8S_MASTERIP ${NC})"
 echo "----"
-echo -e "Add ${GREEN} export KUBECONFIG=$KUBECONFIG:~/.kube/config:~/.kube/$KUBECONFIG_NAME ${NC} to your ~/.bashrc or ~/.zshrc OR run kubectl with the ${GREEN} --kubeconfig ${NC} flag (e.g. kubectl --kubeconfig ~/.kube/$KUBECONFIG_NAME get nodes)"
+echo -e "Add ${GREEN} export KUBECONFIG=\$KUBECONFIG:~/.kube/config:~/.kube/$KUBECONFIG_NAME ${NC} to your ~/.bashrc or ~/.zshrc OR run kubectl with the ${GREEN} --kubeconfig ${NC} flag (e.g. kubectl --kubeconfig ~/.kube/$KUBECONFIG_NAME get nodes)"
 echo "----"
 echo "All DONE - Enjoy!"
 
