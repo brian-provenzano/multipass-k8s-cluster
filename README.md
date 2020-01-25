@@ -8,9 +8,7 @@ Will also pull down the k3s kubeconfig from the k8s master using multipass copy-
 
 Tested on MacOS / Linux; currently uses Ubuntu 18.04 LTS for node images
 
-
-[![asciicast]](https://asciinema.org/a/l3t6QSfjZmfCRjQoZ8UuAoKTj?speed=20&theme=solarized-dark)
-
+<a href="https://asciinema.org/a/l3t6QSfjZmfCRjQoZ8UuAoKTj?speed=20&theme=solarized-dark" target="_blank"><img src="https://asciinema.org/a/l3t6QSfjZmfCRjQoZ8UuAoKTj.svg" width=900 height=700 /></a>
 
 K3s:
  - https://k3s.io/
